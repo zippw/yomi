@@ -27,6 +27,63 @@ const mobile = function () {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 }
 document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        anime.timeline()
+            .add({
+                targets: '.preloader',
+                opacity: 0,
+                duration: 300,
+                easing: 'linear',
+                complete: () => {document.querySelector('.preloader').style.display="none"}
+            })
+            .add({
+                targets: '.branding__content .inner .word',
+                opacity: [0, 1],
+                duration: 1000,
+                easing: 'easeInOutQuart',
+                delay: (el, i) => 34 * (i + 1)
+            })
+            .add({
+                targets: '.branding__content .inner h1 svg',
+                scale: [0, 1],
+                duration: 800
+            }, '-=800')
+            .add({
+                targets: '.branding__content h2',
+                opacity: [0, 1],
+                duration: 1000,
+                easing: 'easeOutSine'
+            }, '-=800')
+            .add({
+                targets: '.branding__content .buttons button, .branding__content .buttons .sep',
+                opacity: [0, 1],
+                translateY: ['10px', 0],
+                duration: 1000,
+                delay: (el, i) => 80 * (i + 1)
+            }, '-=800')
+            .add({
+                targets: '.navbar h1, .navbar a',
+                opacity: [0, 1],
+                translateX: ['-10px', 0],
+                duration: 1000,
+                delay: (el, i) => 34 * (i + 1)
+            }, '-=1000')
+            .add({
+                targets: '.landing .frame',
+                translateY: ['-20px', 0],
+                translateX: ['20px', 0],
+                opacity: [0, 1],
+                duration: 1000
+            }, '-=1700')
+    }, 500);
+    if (mobile() == false) {
+        MouseFollower.registerGSAP(gsap);
+        const cursor = new MouseFollower({
+            visible: true,
+            speed: 1
+        });
+        $('[data-magnetic]').each(function () { new Magnetic(this); });
+    }
     if (window.matchMedia('(min-width:600px)').matches !== true) {
         $('.portfolio__item.swiper-slide').wrapAll('<div class="swiper-wrapper">');
         const portfolioSwiper = new Swiper('.portfolioSwiper', {
@@ -57,14 +114,14 @@ document.addEventListener("DOMContentLoaded", () => {
         touchMultiplier: 5,
         mobile: {
             breakpoint: 0,
-            smooth: false,
+            smooth: true,
         },
         tablet: {
             breakpoint: 0,
-            smooth: false,
+            smooth: true,
         }
     });
-    document.getElementById('scrollToJoin').addEventListener("click", () => { if (mobile()) { setTimeout(() => { scroll.scrollTo(document.querySelector('.ourteam button')) }, 500) } else { scroll.scrollTo(document.querySelector('.ourteam button')) } }, false);
+    document.getElementById('scrollToJoin').addEventListener("click", () => { if (mobile()) { setTimeout(() => { scroll.scrollTo(document.querySelector('#join')) }, 500) } else { scroll.scrollTo(document.querySelector('#join')) } }, false);
     document.querySelector('.scrollDown').addEventListener("click", () => { if (mobile()) { setTimeout(() => { scroll.scrollTo(document.querySelector('h1.landing__title.highlight__title#Portfolio')) }, 500) } else { scroll.scrollTo(document.querySelector('h1.landing__title.highlight__title#Portfolio')) } }, false);
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) == false) {
         // MouseFollower.registerGSAP(gsap);
