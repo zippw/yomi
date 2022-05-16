@@ -1,0 +1,6 @@
+#ENV
+node_modules
+#project
+app
+gulpfile.js
+.bowerrc
