@@ -110,8 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const scroll = new LocomotiveScroll({
         el: document.querySelector('[data-scroll-container]'),
         smooth: true,
-        multiplier: 0.5,
-        touchMultiplier: 5,
         mobile: {
             breakpoint: 0,
             smooth: true,
