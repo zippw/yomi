@@ -76,14 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 duration: 1000
             }, '-=1700')
     }, 500);
-    if (mobile() == false) {
-        MouseFollower.registerGSAP(gsap);
-        const cursor = new MouseFollower({
-            visible: true,
-            speed: 1
-        });
-        $('[data-magnetic]').each(function () { new Magnetic(this); });
-    }
     if (window.matchMedia('(min-width:600px)').matches !== true) {
         $('.portfolio__item.swiper-slide').wrapAll('<div class="swiper-wrapper">');
         const portfolioSwiper = new Swiper('.portfolioSwiper', {
@@ -109,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const scroll = new LocomotiveScroll({
         el: document.querySelector('[data-scroll-container]'),
-        smooth: true,
+        smooth: false,
         mobile: {
             breakpoint: 0,
             smooth: true,
@@ -121,12 +113,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     document.getElementById('scrollToJoin').addEventListener("click", () => { if (mobile()) { setTimeout(() => { scroll.scrollTo(document.querySelector('#join')) }, 500) } else { scroll.scrollTo(document.querySelector('#join')) } }, false);
     document.querySelector('.scrollDown').addEventListener("click", () => { if (mobile()) { setTimeout(() => { scroll.scrollTo(document.querySelector('h1.landing__title.highlight__title#Portfolio')) }, 500) } else { scroll.scrollTo(document.querySelector('h1.landing__title.highlight__title#Portfolio')) } }, false);
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) == false) {
-        // MouseFollower.registerGSAP(gsap);
-        // const cursor = new MouseFollower({
-        //     visible: true,
-        //     speed: 1
-        // });
-        $('[data-magnetic]').each(function () { new Magnetic(this); });
-    }
 });
