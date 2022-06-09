@@ -101,15 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const scroll = new LocomotiveScroll({
         el: document.querySelector('[data-scroll-container]'),
-        smooth: false,
-        mobile: {
-            breakpoint: 0,
-            smooth: true,
-        },
-        tablet: {
-            breakpoint: 0,
-            smooth: true,
-        }
+        smooth: false
     });
     document.getElementById('scrollToJoin').addEventListener("click", () => { if (mobile()) { setTimeout(() => { scroll.scrollTo(document.querySelector('#join')) }, 500) } else { scroll.scrollTo(document.querySelector('#join')) } }, false);
     document.querySelector('.scrollDown').addEventListener("click", () => { if (mobile()) { setTimeout(() => { scroll.scrollTo(document.querySelector('h1.landing__title.highlight__title#Portfolio')) }, 500) } else { scroll.scrollTo(document.querySelector('h1.landing__title.highlight__title#Portfolio')) } }, false);
