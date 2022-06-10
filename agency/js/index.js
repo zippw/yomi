@@ -153,6 +153,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
         }, 1000);
     })
+    // server info 
+    fetch('https://mainzippapi3000.herokuapp.com/api/yomi_server').then(responce => responce.json()).then(result => {
+        console.log(result);
+        document.getElementById('server_icon').src = result.icon
+        document.getElementById('server_name').innerHTML = result.name
+        document.getElementById('server_people').innerHTML = result.people + ' человек на сервере!'
+    })
     setTimeout(() => {
         anime.timeline()
             .add({
