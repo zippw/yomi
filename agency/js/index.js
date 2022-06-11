@@ -3,6 +3,37 @@ var progress;
 var interval;
 var ctx;
 var iii;
+var pow = document.getElementById('popoutWindow');
+let okey;
+let oval;
+const openWindow = function (arr) {
+    //modify
+    arr.forEach(el => {
+        okey = Object.keys(el)[0];
+        oval = Object.values(el)[0];
+        console.log(oval)
+        $(`<${okey} ${okey != 'img' ? '' : 'src="' + oval + '"'}>${oval}${okey == 'img' ? '' : '</' + okey + '>'}`).appendTo(pow.querySelector('.w__content'))
+    });
+    pow.querySelector('.w__content')
+    //show
+    pow.style.opacity = '1';
+    pow.style.transform = 'none';
+    pow.style.pointerEvents = 'all';
+    document.querySelectorAll('*:not(#popoutWindow):not(.noOpacity):not(body):not(html)').forEach(el => {
+        el.style.filter = 'brightness(0.9)'
+    })
+}
+// openWindow() 
+const closeWindow = function () {
+    pow.style.opacity = '0';
+    pow.style.transform = 'translateY(15px)';
+    pow.style.pointerEvents = 'none';
+    document.querySelectorAll('*:not(#popoutWindow):not(.noOpacity):not(body):not(html)').forEach(el => {
+        el.style.filter = ''
+    })
+    pow.querySelector('.w__content').innerHTML = ''
+}
+
 const playVideo = function (ctx, interval) {
     ctx.querySelector('img').style.opacity = '0';
     ctx.querySelector('.progressVid').style.transform = 'translateY(0)'; ctx.querySelector('.progressVid').style.opacity = '1';
@@ -195,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 delay: (el, i) => 80 * (i + 1)
             }, '-=800')
             .add({
-                targets: '.navbar h1, .navbar a',
+                targets: '.navbar h1, .navbar .link',
                 opacity: [0, 1],
                 translateX: ['-10px', 0],
                 duration: 1000,
