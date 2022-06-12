@@ -66,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="card swiper-slide">
             <header class="header cardH">
             <img class="avatar" src="${el.a}" onerror="this.src='img/website/avatar.gif'" alt='Аватар пользователя'>
+            <p class="hearts">${el.h} <img src="https://cdn.discordapp.com/emojis/985566384140455966.webp?size=64&quality=lossless"></p>
             </header>
         <div class="sep"></div>
         <div class="cardT">
